@@ -480,9 +480,9 @@
       document.getElementById('generate-qr').addEventListener('click', async (e) => {
         e.preventDefault();
         
-        const baseUrl = 'https://evo.chatolhe.com.br';
+        const baseUrl = 'htts://seuurl.com.br';
         const instance = document.getElementById('instance').value;
-        const apiKey = '0F26BD83C2B1-4D20-A9DD-E559930CF172';
+        const apiKey = suaApiKey';
         
         addLog(`Iniciando conexão com: ${baseUrl}`, 'info');
         addLog(`Instância: ${instance}`, 'info');
@@ -802,9 +802,9 @@
 
       // Função para reiniciar a instância
       async function restartInstance() {
-        const baseUrl = 'https://evo.chatolhe.com.br';
+        const baseUrl = 'htts://seuurl.com.br';
         const instance = document.getElementById('instance').value;
-        const apiKey = '0F26BD83C2B1-4D20-A9DD-E559930CF172';
+        const apiKey = suaApiKey';
 
         try {
           addLog('Reiniciando instância...', 'info');
@@ -858,9 +858,9 @@
 
       // Função para fazer logout da instância
       async function logoutInstance() {
-        const baseUrl = 'https://evo.chatolhe.com.br';
+        const baseUrl = 'htts://seuurl.com.br';
         const instance = document.getElementById('instance').value;
-        const apiKey = '0F26BD83C2B1-4D20-A9DD-E559930CF172';
+        const apiKey = suaApiKey';
 
         try {
           addLog('Desconectando instância...', 'info');
@@ -934,9 +934,9 @@
 
       // Função para atualizar informações do perfil
       async function updateProfileInfo() {
-        const baseUrl = 'https:////evo.chatolhe.com.br';
+        const baseUrl = 'https:suaurl.com.br';
         const instance = document.getElementById('instance').value;
-        const apiKey = '0F26BD83C2B1-4D20-A9DD-E559930CF172';
+        const apiKey = suaApiKey';
 
         try {
           addLog('Atualizando informações do perfil...', 'info');
@@ -1061,9 +1061,9 @@
 
       // Função para atualizar o nome do perfil
       async function updateProfileName(name) {
-        const baseUrl = 'https:////evo.chatolhe.com.br';
+        const baseUrl = 'https:suaurl.com.br';
         const instance = document.getElementById('instance').value;
-        const apiKey = '0F26BD83C2B1-4D20-A9DD-E559930CF172';
+        const apiKey = suaApiKey';
 
         try {
           const response = await fetch(`${baseUrl}/instance/updateProfileName`, {
@@ -1090,9 +1090,9 @@
 
       // Função para atualizar o status
       async function updateProfileStatus(status) {
-        const baseUrl = 'https:////evo.chatolhe.com.br';
+        const baseUrl = 'https:suaurl.com.br';
         const instance = document.getElementById('instance').value;
-        const apiKey = '0F26BD83C2B1-4D20-A9DD-E559930CF172';
+        const apiKey = suaApiKey';
 
         try {
           const response = await fetch(`${baseUrl}/instance/updateProfileStatus`, {
@@ -1119,9 +1119,9 @@
 
       // Função para atualizar a foto do perfil
       async function updateProfilePicture(file) {
-        const baseUrl = 'https://evo.chatolhe.com.br';
+        const baseUrl = 'htts://seuurl.com.br';
         const instance = document.getElementById('instance').value;
-        const apiKey = '0F26BD83C2B1-4D20-A9DD-E559930CF172';
+        const apiKey = suaApiKey';
 
         try {
           const reader = new FileReader();
@@ -1159,9 +1159,9 @@
         const name = document.getElementById('profile-name').value;
         const status = document.getElementById('profile-status').value;
         const pictureFile = document.getElementById('profile-picture').files[0];
-        const baseUrl = 'https://evo.chatolhe.com.br';
+        const baseUrl = 'htts://seuurl.com.br';
         const instance = document.getElementById('instance').value;
-        const apiKey = '0F26BD83C2B1-4D20-A9DD-E559930CF172';
+        const apiKey = suaApiKey';
 
         if (name) {
           await updateProfileName(name);
