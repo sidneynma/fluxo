@@ -1,0 +1,840 @@
+{
+  "name": "Gera qrcode copy",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "0be2e355-37bc-4e29-b11a-3984deddd64f",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -140,
+        -420
+      ],
+      "id": "a03382dc-ea25-4f41-9446-58ca31ce9d93",
+      "name": "Webhook",
+      "webhookId": "0be2e355-37bc-4e29-b11a-3984deddd64f"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $('Postgres').item.json.connectionStatus }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        700,
+        -420
+      ],
+      "id": "9074a876-49fe-4e0d-95d0-e2e1b71c2425",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2a7f7c54-92e3-4842-98dd-c79fdb431bc2",
+              "name": "token",
+              "value": "={{ $json.query.instance }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        60,
+        -420
+      ],
+      "id": "c9de9ad8-781a-4108-b8f1-f3cfc1e1a5ec",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "Instance",
+          "mode": "list",
+          "cachedResultName": "Instance"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "token",
+              "value": "={{ $('Webhook').item.json.query.instance }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        260,
+        -420
+      ],
+      "id": "cd2ede0c-1427-440f-8238-896eae9d9d5d",
+      "name": "Postgres",
+      "credentials": {
+        "postgres": {
+          "id": "rbyNhGScT2LiZAYS",
+          "name": "Postgres_Evolution_evo"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9affd6ed-f689-49bd-812a-c918476d14a6",
+              "name": "status",
+              "value": "={{ $json.connectionStatus }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        480,
+        -420
+      ],
+      "id": "d9209c2e-6bc0-473d-a4b0-526c668a1e78",
+      "name": "Instancia1"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "f5d769a8-a70d-41a2-9499-fad25a9ab3e3",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -160,
+        -120
+      ],
+      "id": "a6f54033-1f3e-446d-a78f-d7d5f63e0d78",
+      "name": "Webhook2",
+      "webhookId": "f5d769a8-a70d-41a2-9499-fad25a9ab3e3"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.base64 }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1080,
+        -120
+      ],
+      "id": "57e35b75-5c57-441d-812e-f968384c067e",
+      "name": "Respond to Webhook2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2a7f7c54-92e3-4842-98dd-c79fdb431bc2",
+              "name": "token",
+              "value": "={{ $json.body.instance }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        60,
+        -120
+      ],
+      "id": "cd7612c1-3910-4e73-bd0c-499a42b670b1",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "Instance",
+          "mode": "list",
+          "cachedResultName": "Instance"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "token",
+              "value": "={{ $json.token }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        260,
+        -120
+      ],
+      "id": "0b18cd5f-74ba-424a-b454-4790cdd6c59d",
+      "name": "Postgres2",
+      "credentials": {
+        "postgres": {
+          "id": "rbyNhGScT2LiZAYS",
+          "name": "Postgres_Evolution_evo"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9affd6ed-f689-49bd-812a-c918476d14a6",
+              "name": "instancia",
+              "value": "={{ $json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "efbd6b99-2638-4abc-95aa-d27d912e0d8d",
+              "name": "apikey",
+              "value": "={{ $json.token }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        480,
+        -120
+      ],
+      "id": "c5146a24-fe80-4f69-bab8-b89aaab52353",
+      "name": "Instancia2"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "0ec9c109-077a-4b7c-a4aa-1cb8d35cae00",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -120,
+        160
+      ],
+      "id": "31a52593-49c7-409d-a25b-e19ed2c1e5f9",
+      "name": "Webhook3",
+      "webhookId": "0ec9c109-077a-4b7c-a4aa-1cb8d35cae00"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.data.status }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        940,
+        160
+      ],
+      "id": "f2e9a167-c3ac-4d91-8e51-cf2a7339bd8f",
+      "name": "Respond to Webhook3"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2a7f7c54-92e3-4842-98dd-c79fdb431bc2",
+              "name": "token",
+              "value": "={{ $json.body.instance }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        100,
+        160
+      ],
+      "id": "b00be287-37d4-417b-8d41-fc35e936e171",
+      "name": "Edit Fields3"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "Instance",
+          "mode": "list",
+          "cachedResultName": "Instance"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "token",
+              "value": "={{ $json.token }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        280,
+        160
+      ],
+      "id": "c57822cd-8d4f-4335-b2c0-0ec1f6607670",
+      "name": "Postgres3",
+      "credentials": {
+        "postgres": {
+          "id": "rbyNhGScT2LiZAYS",
+          "name": "Postgres_Evolution_evo"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9affd6ed-f689-49bd-812a-c918476d14a6",
+              "name": "instancia",
+              "value": "={{ $json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "efbd6b99-2638-4abc-95aa-d27d912e0d8d",
+              "name": "apikey",
+              "value": "={{ $json.token }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        500,
+        160
+      ],
+      "id": "20c21003-22d4-421f-a5ab-72bbe8d74751",
+      "name": "Instancia3"
+    },
+    {
+      "parameters": {
+        "operation": "logout-instance",
+        "instanceName": "={{ $json.instancia }}"
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        740,
+        160
+      ],
+      "id": "85390e55-9733-4019-b043-2214548fb526",
+      "name": "Evolution API2",
+      "credentials": {
+        "evolutionApi": {
+          "id": "W99i9h7oC7Nhjt9A",
+          "name": "Evolution Evo"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b5861635-5cfa-41ad-a22d-e03bb9ce3f66",
+              "name": "base64",
+              "value": "={{ $json.data.base64.split(\",\").last()}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        900,
+        -120
+      ],
+      "id": "aff36dc6-7aad-4ee2-8b7d-40fc015eb90e",
+      "name": "Edit Fields4"
+    },
+    {
+      "parameters": {
+        "content": "## Cosnulta status\n",
+        "height": 240,
+        "width": 1120
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -140,
+        -500
+      ],
+      "typeVersion": 1,
+      "id": "5a3764fe-6301-4d08-b202-e0140ef30951",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Gera QRcode\n",
+        "height": 300,
+        "width": 1460,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -160,
+        -220
+      ],
+      "typeVersion": 1,
+      "id": "fe4c5665-0f68-4402-a268-42478e2a7bbf",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "operation": "instance-connect",
+        "instanceName": "={{ $json.instancia }}"
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        700,
+        -120
+      ],
+      "id": "d6e587ea-0471-4156-9b4f-b261deb0ad8e",
+      "name": "Evolution Evo",
+      "credentials": {
+        "evolutionApi": {
+          "id": "W99i9h7oC7Nhjt9A",
+          "name": "Evolution Evo"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Gera Desconecta instancia",
+        "height": 220,
+        "width": 1300,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -140,
+        100
+      ],
+      "typeVersion": 1,
+      "id": "fef702f8-b3a4-429d-8394-bc28fbd6ebfe",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Gera a Pagina\n",
+        "height": 200,
+        "width": 1120,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1340,
+        -180
+      ],
+      "typeVersion": 1,
+      "id": "30558f73-1886-4395-b1ce-0d34d035209f",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "path": "conexaocomwhatsapp",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -1280,
+        -120
+      ],
+      "id": "2510f46b-f0c0-455a-adc8-d0cbe4816f7e",
+      "name": "Webhook1",
+      "webhookId": "1dcc7556-f2a3-4185-98bf-85e69e75df7c"
+    },
+    {
+      "parameters": {
+        "html": "<!DOCTYPE html>\n<html lang=\"pt-BR\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Conector WhatsApp</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body class=\"bg-gradient-to-br from-blue-50 to-gray-100 min-h-screen flex items-center justify-center\">\n  <div class=\"bg-white shadow-2xl rounded-xl p-8 max-w-md w-full\">\n    <div class=\"flex justify-center mb-6\">\n      <img src=\"https://apiminio1.chatolhe.com.br/logo/logo-azul-cw.svg\" class=\"h-10\" alt=\"Logo ChatOlhe\">\n    </div>\n    <h2 class=\"text-center text-xl font-bold text-gray-800 mb-4\">Conecte seu WhatsApp</h2>\n\n    <label for=\"instance\" class=\"block text-sm font-medium text-gray-700 mb-1\">Nome da Instância:</label>\n    <input type=\"text\" id=\"instance\" placeholder=\"ex: minha-instancia\" class=\"w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 mb-4\" />\n\n    <div class=\"flex gap-4 mb-6\">\n      <button onclick=\"verificarStatus()\" class=\"w-1/2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg\">Gerar QR Code</button>\n      <button onclick=\"desconectarInstancia()\" class=\"w-1/2 bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded-lg\">Desconectar</button>\n    </div>\n\n    <div id=\"resultado\" class=\"text-center text-sm font-medium text-gray-700 mb-4\"></div>\n    <div id=\"qrcode\" class=\"flex justify-center mb-2\"></div>\n    <div id=\"contador\" class=\"text-center text-gray-600 text-sm\"></div>\n  </div>\n\n  <script>\n    let timeout;\n    let intervalo;\n    let tempoRestante = 30;\n\n    async function verificarStatus() {\n      const instance = document.getElementById('instance').value.trim();\n      const resultadoDiv = document.getElementById('resultado');\n      const qrcodeDiv = document.getElementById('qrcode');\n      const contadorDiv = document.getElementById('contador');\n\n      clearTimeout(timeout);\n      clearInterval(intervalo);\n      tempoRestante = 30;\n      contadorDiv.innerText = '';\n\n      if (!instance) {\n        resultadoDiv.innerText = 'Por favor, informe o nome da instância.';\n        return;\n      }\n\n      const url = `https://autoweb.chatolhe.com.br/webhook/consultastatus?instance=${encodeURIComponent(instance)}`;\n\n      try {\n        const response = await fetch(url);\n        const text = await response.text();\n\n        if (text.toLowerCase().includes('open')) {\n          resultadoDiv.innerHTML = '<span class=\"text-green-600\">✅ Instância conectada!</span>';\n          qrcodeDiv.innerHTML = '';\n          contadorDiv.innerHTML = '';\n        } else {\n          resultadoDiv.innerHTML = '<span class=\"text-yellow-600\">🔄 Instância não conectada.</span>';\n          buscarQRCode(instance);\n        }\n      } catch (error) {\n        resultadoDiv.innerHTML = '<span class=\"text-red-600\">❌ Erro ao consultar status.</span>';\n        console.error(error);\n      }\n    }\n\n    async function buscarQRCode(instance) {\n      const qrcodeDiv = document.getElementById('qrcode');\n      const contadorDiv = document.getElementById('contador');\n\n      qrcodeDiv.innerHTML = '<p class=\"text-gray-500\">Buscando QR Code...</p>';\n      contadorDiv.innerText = '';\n\n      try {\n        const response = await fetch('https://autoweb.chatolhe.com.br/webhook/gerarqrcode', {\n          method: 'POST',\n          headers: {\n            'Content-Type': 'application/x-www-form-urlencoded'\n          },\n          body: `instance=${encodeURIComponent(instance)}`\n        });\n\n        const base64 = await response.text();\n\n        if (base64.startsWith(\"iVBOR\") || base64.length > 100) {\n          qrcodeDiv.innerHTML = `<img src=\"data:image/png;base64,${base64}\" alt=\"QR Code\" class=\"w-48 h-48 rounded-lg shadow\" />`;\n          tempoRestante = 30;\n          atualizarContador();\n        } else {\n          qrcodeDiv.innerHTML = '<p class=\"text-red-600\">❌ QR Code inválido.</p>';\n          contadorDiv.innerText = '';\n        }\n      } catch (error) {\n        qrcodeDiv.innerHTML = '<p class=\"text-red-600\">❌ Erro ao buscar QR Code.</p>';\n        console.error(error);\n        contadorDiv.innerText = '';\n      }\n\n      timeout = setTimeout(() => buscarQRCode(instance), 30000);\n    }\n\n    function atualizarContador() {\n      const contadorDiv = document.getElementById('contador');\n\n      intervalo = setInterval(() => {\n        tempoRestante--;\n        contadorDiv.innerText = `⏳ Novo QR Code em: ${tempoRestante}s`;\n\n        if (tempoRestante <= 0) {\n          clearInterval(intervalo);\n        }\n      }, 1000);\n    }\n\n    async function desconectarInstancia() {\n      const instance = document.getElementById('instance').value.trim();\n      const resultadoDiv = document.getElementById('resultado');\n      const qrcodeDiv = document.getElementById('qrcode');\n      const contadorDiv = document.getElementById('contador');\n\n      clearTimeout(timeout);\n      clearInterval(intervalo);\n      tempoRestante = 30;\n\n      if (!instance) {\n        alert('Informe o nome da instância para desconectar.');\n        return;\n      }\n\n      try {\n        await fetch('https://autoweb.chatolhe.com.br/webhook/desconectarinstancia', {\n          method: 'POST',\n          headers: {\n            'Content-Type': 'application/x-www-form-urlencoded'\n          },\n          body: `instance=${encodeURIComponent(instance)}`\n        });\n\n        resultadoDiv.innerHTML = '<span class=\"text-red-600\">❌ Instância desconectada manualmente.</span>';\n        qrcodeDiv.innerHTML = '';\n        contadorDiv.innerHTML = '';\n      } catch (error) {\n        resultadoDiv.innerHTML = '<span class=\"text-red-600\">❌ Erro ao desconectar instância.</span>';\n        console.error(error);\n      }\n    }\n  </script>\n</body>\n</html>"
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        -460,
+        -140
+      ],
+      "id": "77db5b12-5c4e-4b92-bebf-6ea7668dc70a",
+      "name": "HTML",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.html }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        -680,
+        -120
+      ],
+      "id": "d6257880-9913-4155-bbfc-a5d746e51073",
+      "name": "Respond to Webhook9"
+    },
+    {
+      "parameters": {
+        "html": "<!DOCTYPE html>\n<html lang=\"pt-BR\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Conector WhatsApp</title>\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body class=\"bg-gradient-to-br from-blue-50 to-gray-100 min-h-screen flex items-center justify-center px-4\">\n  <div class=\"bg-white shadow-2xl rounded-xl p-6 sm:p-8 w-full max-w-md\">\n    <div class=\"flex justify-center mb-6\">\n      <img src=\"https://apiminio1.chatolhe.com.br/logo/logo-azul-cw.svg\" class=\"h-10\" alt=\"Logo ChatOlhe\">\n    </div>\n    <h2 class=\"text-center text-xl font-bold text-gray-800 mb-4\">Conecte seu WhatsApp</h2>\n\n    <label for=\"instance\" class=\"block text-sm font-medium text-gray-700 mb-1\">Nome da Instância:</label>\n    <input type=\"text\" id=\"instance\" placeholder=\"ex: minha-instancia\"\n      class=\"w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 mb-4\" />\n\n    <div class=\"flex flex-col sm:flex-row gap-4 mb-6\">\n      <button onclick=\"verificarStatus()\"\n        class=\"w-full sm:w-1/2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg\">Gerar QR Code</button>\n      <button onclick=\"desconectarInstancia()\"\n        class=\"w-full sm:w-1/2 bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded-lg\">Desconectar</button>\n    </div>\n\n    <div id=\"resultado\" class=\"text-center text-sm font-medium text-gray-700 mb-4\"></div>\n    <div id=\"qrcode\" class=\"flex justify-center mb-2 overflow-x-auto\"></div>\n    <div id=\"contador\" class=\"text-center text-gray-600 text-sm\"></div>\n  </div>\n\n  <script>\n    let timeout;\n    let intervalo;\n    let tempoRestante = 30;\n\n    async function verificarStatus() {\n      const instance = document.getElementById('instance').value.trim();\n      const resultadoDiv = document.getElementById('resultado');\n      const qrcodeDiv = document.getElementById('qrcode');\n      const contadorDiv = document.getElementById('contador');\n\n      clearTimeout(timeout);\n      clearInterval(intervalo);\n      tempoRestante = 30;\n      contadorDiv.innerText = '';\n\n      if (!instance) {\n        resultadoDiv.innerText = 'Por favor, informe o nome da instância.';\n        return;\n      }\n\n      const url = `{{ $json[\"Consulta\"] }}?instance=${encodeURIComponent(instance)}`;\n\n      try {\n        const response = await fetch(url);\n        const text = await response.text();\n\n        if (text.toLowerCase().includes('open')) {\n          resultadoDiv.innerHTML = '<span class=\"text-green-600\">✅ Instância conectada!</span>';\n          qrcodeDiv.innerHTML = '';\n          contadorDiv.innerHTML = '';\n        } else {\n          resultadoDiv.innerHTML = '<span class=\"text-yellow-600\">🔄 Instância não conectada.</span>';\n          buscarQRCode(instance);\n        }\n      } catch (error) {\n        resultadoDiv.innerHTML = '<span class=\"text-red-600\">❌ Erro ao consultar status.</span>';\n        console.error(error);\n      }\n    }\n\n    async function buscarQRCode(instance) {\n      const qrcodeDiv = document.getElementById('qrcode');\n      const contadorDiv = document.getElementById('contador');\n\n      qrcodeDiv.innerHTML = '<p class=\"text-gray-500\">Buscando QR Code...</p>';\n      contadorDiv.innerText = '';\n\n      try {\n        const response = await fetch('{{ $json[\"QRcode\"] }}', {\n          method: 'POST',\n          headers: {\n            'Content-Type': 'application/x-www-form-urlencoded'\n          },\n          body: `instance=${encodeURIComponent(instance)}`\n        });\n\n        const base64 = await response.text();\n\n        if (base64.startsWith(\"iVBOR\") || base64.length > 100) {\n          qrcodeDiv.innerHTML = `<img src=\"data:image/png;base64,${base64}\" alt=\"QR Code\" class=\"w-48 h-48 rounded-lg shadow\" />`;\n          tempoRestante = 30;\n          atualizarContador();\n        } else {\n          qrcodeDiv.innerHTML = '<p class=\"text-red-600\">❌ QR Code inválido.</p>';\n          contadorDiv.innerText = '';\n        }\n      } catch (error) {\n        qrcodeDiv.innerHTML = '<p class=\"text-red-600\">✅ Instância conectada.</p>';\n        console.error(error);\n        contadorDiv.innerText = '';\n      }\n\n      timeout = setTimeout(() => buscarQRCode(instance), 30000);\n    }\n\n    function atualizarContador() {\n      const contadorDiv = document.getElementById('contador');\n\n      intervalo = setInterval(() => {\n        tempoRestante--;\n        contadorDiv.innerText = `⏳ Novo QR Code em: ${tempoRestante}s`;\n\n        if (tempoRestante <= 0) {\n          clearInterval(intervalo);\n        }\n      }, 1000);\n    }\n\n    async function desconectarInstancia() {\n      const instance = document.getElementById('instance').value.trim();\n      const resultadoDiv = document.getElementById('resultado');\n      const qrcodeDiv = document.getElementById('qrcode');\n      const contadorDiv = document.getElementById('contador');\n\n      clearTimeout(timeout);\n      clearInterval(intervalo);\n      tempoRestante = 30;\n\n      if (!instance) {\n        alert('Informe o nome da instância para desconectar.');\n        return;\n      }\n\n      try {\n        await fetch('{{ $json[\"Desconecta\"] }}', {\n          method: 'POST',\n          headers: {\n            'Content-Type': 'application/x-www-form-urlencoded'\n          },\n          body: `instance=${encodeURIComponent(instance)}`\n        });\n\n        resultadoDiv.innerHTML = '<span class=\"text-red-600\">❌ Instância desconectada manualmente.</span>';\n        qrcodeDiv.innerHTML = '';\n        contadorDiv.innerHTML = '';\n      } catch (error) {\n        resultadoDiv.innerHTML = '<span class=\"text-red-600\">❌ Erro ao desconectar instância.</span>';\n        console.error(error);\n      }\n    }\n  </script>\n</body>\n</html>"
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        -880,
+        -120
+      ],
+      "id": "4f51bf01-589c-4b92-9cb7-5d12d8851c92",
+      "name": "Instancia_responsivo"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4037316e-24bc-4045-b860-54bd70070e2e",
+              "name": "Consulta",
+              "value": "=https://autoweb.chatolhe.com.br/webhook/0be2e355-37bc-4e29-b11a-3984deddd64f",
+              "type": "string"
+            },
+            {
+              "id": "5926c7a4-9270-4e5b-9c67-bc6e465f244a",
+              "name": "QRcode",
+              "value": "https://autoweb.chatolhe.com.br/webhook/f5d769a8-a70d-41a2-9499-fad25a9ab3e3",
+              "type": "string"
+            },
+            {
+              "id": "a878f7b7-44e4-44db-85b0-3b3d95ed1e2c",
+              "name": "Desconecta",
+              "value": "https://autoweb.chatolhe.com.br/webhook/0ec9c109-077a-4b7c-a4aa-1cb8d35cae00",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1100,
+        -120
+      ],
+      "id": "68113f43-8572-4f0c-be39-95bf89087bcb",
+      "name": "Mapeamento_Webhook"
+    }
+  ],
+  "pinData": {
+    "Webhook2": [
+      {
+        "json": {
+          "headers": {
+            "host": "autoweb.chatolhe.com.br",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+            "content-length": "44",
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7",
+            "content-type": "application/x-www-form-urlencoded",
+            "origin": "null",
+            "priority": "u=1, i",
+            "sec-ch-ua": "\"Chromium\";v=\"136\", \"Google Chrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "x-forwarded-for": "186.212.15.73",
+            "x-forwarded-host": "autoweb.chatolhe.com.br",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "e075ea4abea5",
+            "x-real-ip": "186.212.15.73"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "instance": "198064616B82-45A5-AFD4-8B27C3F0EC4B"
+          },
+          "webhookUrl": "https://autoweb.chatolhe.com.br/webhook/gerarqrcode",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres": {
+      "main": [
+        [
+          {
+            "node": "Instancia1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Instancia1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook2": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "Postgres2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres2": {
+      "main": [
+        [
+          {
+            "node": "Instancia2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Instancia2": {
+      "main": [
+        [
+          {
+            "node": "Evolution Evo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook3": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields3": {
+      "main": [
+        [
+          {
+            "node": "Postgres3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres3": {
+      "main": [
+        [
+          {
+            "node": "Instancia3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Instancia3": {
+      "main": [
+        [
+          {
+            "node": "Evolution API2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evolution API2": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields4": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evolution Evo": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "Mapeamento_Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTML": {
+      "main": [
+        []
+      ]
+    },
+    "Instancia_responsivo": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mapeamento_Webhook": {
+      "main": [
+        [
+          {
+            "node": "Instancia_responsivo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "102b2695-6f4b-4e6c-b12a-3b18f3c4ef52",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "b3600dde4c87b453e5d484aac005d98d8d458c18d8eacac874be20defd65a2da"
+  },
+  "id": "HOHiCnfrIcHH65kB",
+  "tags": []
+}
