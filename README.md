@@ -1,5 +1,5 @@
 # fluxo
-Copia o json do fluxo e salvar ele no N8N
+Copiar o json do fluxo e salvar ele no N8N
 unica alteração que precisa ser feita e no nó SET da pagina
 colocar as url de procução dos nós WEBHOOOK conforme sua nomeação na seção Path
 Exemplo https://seudoinho/webhook/gerapagina conforme voce adicionar o nome
